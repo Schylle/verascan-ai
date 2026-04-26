@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VeraScanAI — Authenticity Verified</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i data-lucide="shield-check" class="icon-emerald"></i>
+                <span>VeraScanAI</span>
+            </div>
+            <div class="menu">
+                <a href="#">Detector</a>
+                <a href="#">API</a>
+                <a href="#">Docs</a>
+                <button class="btn-login">Login</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="dashboard">
+        <section class="panel input-panel">
+            <div class="tab-system">
+                <button class="tab-btn active" onclick="switchMode('text')">
+                    <i data-lucide="file-text"></i> Text
+                </button>
+                <button class="tab-btn" onclick="switchMode('url')">
+                    <i data-lucide="globe"></i> URL
+                </button>
+                <button class="tab-btn" onclick="switchMode('image')">
+                    <i data-lucide="image"></i> Image
+                </button>
+            </div>
+
+            <div id="input-container">
+                <textarea id="input-text" class="input-field" placeholder="Paste your content here..."></textarea>
+                
+                <input type="url" id="input-url" class="input-field hidden" placeholder="https://example.com/article">
+                
+                <div id="input-image" class="drop-zone hidden" onclick="document.getElementById('file-upload').click()">
+    <i data-lucide="upload-cloud"></i>
+    <p>Click to upload or drag & drop</p>
+    <input type="file" id="file-upload" hidden accept="image/*">
+</div>
+
+            <button class="btn-analyze" onclick="startAnalysis()">
+                <i data-lucide="search"></i> Analyze Content
+            </button>
+        </section>
+
+        <section class="panel result-panel" id="result-view">
+            <div id="empty-state">
+                <i data-lucide="shield" class="shield-bg"></i>
+                <p>Waiting for analysis...</p>
+            </div>
+
+            <div id="loading-state" class="hidden">
+            <div class="spinner"></div>
+                <p style="color: var(--primary); font-weight: 500;">Analyzing patterns...</p>
+            </div>
+
+            <div id="result-content" class="hidden">
+                <h3 class="label-header">AI Probability</h3>
+                <div id="score-display">0%</div>
+                <div id="status-label">LABEL</div>
+                <div class="explanation-box">
+                    <h4>Analysis Insight</h4>
+                    <p id="explanation-text"></p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+    <script>lucide.createIcons();</script>
+</body>
+</html>
